@@ -15,22 +15,13 @@ for i in word:
 
 
 def inp_check(x):
+    x_list = []
     if x in dic_sort_5:
-        pass
+        for w in x:
+            x_list.append(w)
+        return x_list
     else:
         return False
-
-    x_list = []
-    for w in x:
-        x_list.append(w)
-    for j in x_list:
-        try:
-            j == int(j)
-        except ValueError:
-            ''
-        else:
-            return False
-    return x_list
 
 
 def game():
@@ -70,7 +61,7 @@ def game():
             print('В слове НЕТ:', ', '.join(no_letter).upper())
             print(f'Попыток осталось: {count}')
         else:
-            return 'Победа!'
+            return f'Победа! Загаданное слово: {word.upper()}'
 
     return f'Проигрыш! Вы не отгадали слово: {word.upper()}'
 
