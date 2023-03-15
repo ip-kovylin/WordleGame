@@ -2,7 +2,7 @@ import random
 
 dic_sort = []
 dic_sort_5 = []
-with open('russian.txt', 'r') as dic_:
+with open('russian.txt', 'r', encoding="windows-1251") as dic_:
     for line in dic_:
         dic_sort.append(line.rstrip('\n'))
     for word in dic_sort:
