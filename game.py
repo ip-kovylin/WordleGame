@@ -13,40 +13,35 @@ list_word = []
 for i in word:
     list_word.append(i)
 
+
 def inp_check(x):
     if x in dic_sort_5:
         pass
     else:
         return False
 
-    # if len(x) != 5:
-    #     return False
-    # else:
-    #     pass
-
     x_list = []
-    x_int = []
-    for i in x:
-        x_list.append(i)
+    for w in x:
+        x_list.append(w)
     for j in x_list:
         try:
             j == int(j)
-        except ValueError:''
+        except ValueError:
+            ''
         else:
             return False
     return x_list
 
+
 def game():
     count = 5
     open_wrd = ['*', '*', '*', '*', '*']
+    ex_letter = []
+    no_letter = []
+
     while count != 0:
         list_try_word = []
-        try_word = str(input('Введите слово из 5 букв:  '))
-
-        # if try_word == word:
-        #     return 'Победа!'
-        # else:
-        #     pass
+        try_word = str(input('Введите слово:  '))
 
         if inp_check(try_word):
             pass
@@ -54,20 +49,27 @@ def game():
             print('Введены некорректные данные. Введите слово из 5 букв')
             continue
 
-        for i in try_word:
-            list_try_word.append(i.lower())
+        for n in try_word:
+            list_try_word.append(n.lower())
 
-        for i in range(5):
-            if list_try_word[i] == list_word[i]:
-                open_wrd[i] = list_try_word[i]
+        for v in range(5):
+            if list_try_word[v] in list_word and list_try_word[v] not in ex_letter:
+                ex_letter.append(list_try_word[v])
+            if list_try_word[v] not in list_word and list_try_word[v] not in no_letter:
+                no_letter.append(list_try_word[v])
+            if list_try_word[v] == list_word[v]:
+                open_wrd[v] = list_try_word[v]
             else:
                 pass
 
         if list_try_word != open_wrd:
             count -= 1
-            print(' '.join(open_wrd).upper(), f'Попыток осталось: {count}', sep='\n')
+            print(' '.join(open_wrd).upper())
+            if len(ex_letter):
+                print('В слове ЕСТЬ:', ', '.join(ex_letter).upper())
+            print('В слове НЕТ:', ', '.join(no_letter).upper())
+            print(f'Попыток осталось: {count}')
         else:
-            count = 0
             return 'Победа!'
 
     return f'Проигрыш! Вы не отгадали слово: {word.upper()}'
